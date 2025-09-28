@@ -1,4 +1,4 @@
-version: "3.9"
+#version: "3.9"
 services:
   postgres:
     image: postgres:16
@@ -16,12 +16,16 @@ services:
   pgadmin:
     image: dpage/pgadmin4:8
     container_name: siaci-pgadmin
+    env_file:
+    - ../.env
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@siaci.local}
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@example.com}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-admin123}
     ports:
       - "5050:80"
     restart: unless-stopped
+
+  
 
 volumes:
   pgdata:
